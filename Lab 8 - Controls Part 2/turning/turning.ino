@@ -65,8 +65,10 @@ int left_jolt = 200;
 int right_jolt = 195;
 
 // Control gains
-float f_left = 0.1;
-float f_right = 0.9;
+//float f_left = 0.1;
+//float f_right = 0.9;
+float f_left = 0.9;
+float f_right = 0.1;
 
 /*---------------------------*/
 /*      CODE BLOCK CON2      */
@@ -86,20 +88,21 @@ float driveStraight_right(float delta) {
 /*    From closed_loop.ino   */
 /*---------------------------*/
 
-float delta_ss = 9;
+//float delta_ss = 9;
+float delta_ss = 15;
 
 /*---------------------------*/
 /*      CODE BLOCK CON4      */
 /*---------------------------*/
 
 #define CAR_WIDTH                   15.0 // in cm
-#define TURN_RADIUS                 50 // in cm - 6 feet diameter
-#define TURN_RADIUS2                 90 // in cm - 4 feet diameter
+#define TURN_RADIUS                 120 // in cm - 6 feet diameter
+#define TURN_RADIUS2                 100 // in cm - 4 feet diameter
 
 /*---------------------------*/
 /*    PREPROGRAMMED PATH     */
 /*---------------------------*/
-int run_times[NUM_COMMANDS] = {3000, 3500, 3000, 3000}; // length of commands roughly in ms
+int run_times[NUM_COMMANDS] = {6000, 3000, 3000, 2500}; // length of commands roughly in ms
 int drive_modes[NUM_COMMANDS] = {DRIVE_STRAIGHT, DRIVE_LEFT, DRIVE_STRAIGHT, DRIVE_RIGHT}; // commands: [DRIVE_STRAIGHT, DRIVE_LEFT, DRIVE_RIGHT]
 
 float delta_reference(int i) {
@@ -120,10 +123,11 @@ float delta_reference(int i) {
 /*      CODE BLOCK CON5      */
 /*---------------------------*/
 #define INFINITY                    (3.4e+38)
-#define STRAIGHT_RADIUS             100000
+#define STRAIGHT_RADIUS             500
 
 float straight_correction(int i) {
-  return ((v_star / 5) * CAR_WIDTH * i) / STRAIGHT_RADIUS;
+//  return -((v_star / 5) * CAR_WIDTH * i) / STRAIGHT_RADIUS;
+  return 0;
 }
 
 /*---------------------------*/
